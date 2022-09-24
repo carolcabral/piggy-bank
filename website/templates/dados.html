@@ -1,0 +1,29 @@
+{%if dados %}
+<h1> Dados: {{dados[0].id}}</h1>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Data</th>
+            <th scope="col">Potência CA</th>
+            <th scope="col">Potência CC</th>
+            <th scope="col">Energia CA</th>
+            <!-- <th scope="col">Temperatura</th> -->
+        </tr>
+    </thead>
+    <tbody>
+        {%for value in dados %}
+        <tr>
+            <th scope="row">{{value.timestamp.strftime("%d/%m/%Y %H:%M:%S")}}</th>
+            <td>{{value.power_ca}}</td>
+            <td>{{value.power_cc}}</td>
+            <td>{{value.energy_ca}}</td>
+            <!-- <td>{{value.temperature}}</td> -->
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{%endif%}

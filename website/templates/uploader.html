@@ -1,0 +1,39 @@
+<form action="http://localhost:5000/uploader" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" required />
+
+
+    <label for="usina">Usina</label>
+
+    <select class="form-select" name="usina" id="usina">
+        <option value="" selected>Choose..</option>
+        {%for value in usinas %}
+        <option name="{{value.id}}" id="{{value.id}}" value="{{value.id}}">{{value.name}}</option>
+        {% endfor %}
+        <option value="other">Adicionar uma nova usina</option>
+
+    </select>
+    <input type=text id="new_usina" name="new_usina" style="display:none;"></input>
+
+
+    <input type="submit" />
+
+
+</form>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+<script>
+    // Toggle user input for new categories
+    $('select').on('change', function () {
+        console.log("Select changed")
+        var type = $(this).attr('id')
+        var value = $("#" + type + " option:selected").val();
+
+        if (value == "other") {
+            $("#new_" + type).show();
+        }
+        else {
+            $("#new_" + type).hide();
+        }
+    })
+</script>

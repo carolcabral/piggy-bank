@@ -1,55 +1,65 @@
 {% extends "base.html" %} {%block title %}Home{%endblock%} {% block content %}
 
-<button
-  type="button"
-  class=""
-  onClick="nextMonth({{current_month}}-1, {{current_year}} )"
->
-  Prev
-</button>
 
-<h1>{{current_month}} / {{current_year}}</h1>
+<html>
 
-<button
-  type="button"
-  class=""
-  onClick="nextMonth({{current_month}} + 1, {{current_year}} )"
->
-  NEXT
-</button>
+<body>
+  {%include "uploader.html"%}
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Data</th>
-      <th scope="col">Item</th>
-      <th scope="col">Valor</th>
-      <th scope="col">Categoria</th>
-    </tr>
-  </thead>
-  <tbody>
-    {%for entry in entries %}
-    <tr>
-      <th scope="row">{{entry.date.strftime("%d")}}</th>
-      <td>{{entry.item}}</td>
-      <td>{{entry.value}}</td>
-      <td>{{entry.category}}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
 
-<h1>Your balance is R$ {{balance}}</h1>
+  {%if usinas%}
 
-<script type="text/javascript">
-  function nextMonth(currentMonth, currentYear) {
-    fetch("/", {
-      method: "POST",
-      body: JSON.stringify({ currentMonth, currentYear }),
-    }).then((res) => {
-      window.location.href = "/";
-    });
+  <h1> Gerar reporte</h1>
+
+  <form id="actionform" onsubmit="get_usina_id()" method="POST" enctype="multipart/form-data">
+    <!-- <input type="text" list="usina" id="new_usina" name="usina" /> -->
+    <label>Selecione a usina: </label>
+    <select id="usina" name="usina" onchange="updateSelected(event)">
+
+      {%for value in usinas %}
+      <option value="{{value.id}}" id="{{value.name}}">{{value.name}}</option>
+      {% endfor %}
+    </select>
+    <input type="submit" />
+  </form>
+
+
+  {%endif%}
+
+  <!-- <div id="possible_inverters">
+    <select id="inverter" name="inverter">
+      {%for value in interters %}
+      <option value="{{value.name}}" id="{{value.name}}">{{ value.name }}</option>
+      {% endfor %}
+    </select>
+  </div> -->
+
+
+</body>
+
+</html>
+
+
+<script>
+  function updateSelected(event) {
+    console.log("Selecting usina", event.target.value)
+    var form = document.getElementById('actionform')
+    //var usina_id = document.getElementById('symbol').value
+    var action_src = "http://localhost:5000/report/" + event.target.value
+
+    form.action = action_src;
+
   }
 </script>
 
+
+<script language="javascript" type="text/javascript">
+  function get_usina_id() {
+    var form = document.getElementById('actionform')
+
+    console.log("Sending request to  usina", form.action)
+
+
+  }
+</script>
 {% endblock %}

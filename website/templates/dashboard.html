@@ -1,0 +1,17 @@
+{% extends "base.html" %} {%block title %}Dashboard{%endblock%} {% block content %}
+
+
+<h1>
+    Usina: {{usina.name}}
+</h1>
+{%include "inverters.html"%}
+
+
+{%include "avg_inverters.html"%}
+
+<form action="{{ url_for('views.downloader', usina_id=usina.id) }}">
+    <!-- "http://localhost:5000/downloader/{{usina.id}}"> -->
+    <input type="submit" value="Exportar" />
+
+</form>
+{%endblock%}

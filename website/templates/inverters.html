@@ -1,0 +1,9 @@
+{%if inverters%}
+<h1> Inverters:</h1>
+
+<ul>
+    {%for value in inverters %}
+    <li>{{value.id }} | {{value.usina_id}} | {{value.name}}</li>
+    {% endfor %}
+</ul>
+{%endif%}

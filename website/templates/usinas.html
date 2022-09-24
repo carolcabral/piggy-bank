@@ -1,0 +1,8 @@
+{%if usinas%}
+<h1> Usinas:</h1>
+<ul>
+    {%for value in usinas %}
+    <li>{{value.id }} | {{value.name}}</li>
+    {% endfor %}
+</ul>
+{%endif%}

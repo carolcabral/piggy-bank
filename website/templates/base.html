@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="./static/css/style.css" type="text/css">
-    
+
     <!-- Bootstrap -->
-    
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -22,63 +22,25 @@
 
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-        {% for category, message in messages %}
-            {% if category == 'error' %}
-            <div class="alert alert-danger alter-dismissable fade show" role="alert">
-                {{message}}
-                <button type="button" class="close" data-dismiss="alert">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            {% else %}
-            <div class="alert alert-success alter-dismissable fade show" role="alert">
-                {{message}}
-                <button type="button" class="close" data-dismiss="alert">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            {%endif%}
-        {% endfor%}
+    {% for category, message in messages %}
+    {% if category == 'error' %}
+    <div class="alert alert-danger alter-dismissable fade show" role="alert">
+        {{message}}
+        <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% else %}
+    <div class="alert alert-success alter-dismissable fade show" role="alert">
+        {{message}}
+        <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {%endif%}
+    {% endfor%}
     {% endif %}
     {% endwith %}
-
-    <div class="nav-wrapper">
-        {%if user.is_authenticated %}
-        <div class="left-side">
-            <div class="nav-link-wrapper">
-                <a href="/">Home</a>
-            </div>
-            <div class="nav-link-wrapper">
-                <a href="/new-entry">New entry</a>
-            </div>
-
-            <div class="nav-link-wrapper">
-                <a href="/reports">Reports</a>
-            </div>
-        </div>
-
-        <div class="right-side">
-            <div class="nav-link-wrapper">
-                <a href="/config" class="right-side">Add Categories</a>
-            </div>
-
-            <div class="nav-link-wrapper">
-                <a href="/logout" class="right-side">Logout</a>
-            </div>
-            {%else %}
-
-        <div class="right-side">
-            <div class="nav-link-wrapper">
-                <a href="/login" class="right-side">Login</a>
-            </div>
-
-            <div class="nav-link-wrapper">
-                <a href="/sign-up" class="right-side">SIgn-up</a>
-            </div>
-            {%endif %}
-        </div>
-    </div>
-
 
     <!-- Page Content-->
     <div class="page-content">
@@ -87,7 +49,7 @@
     </div>
 
     <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
-    
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

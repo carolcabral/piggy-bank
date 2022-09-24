@@ -1,0 +1,67 @@
+{%if res %}
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th scope="col">InverterID</th>
+            <th scope="col"> Média Potência CA</th>
+            <th scope="col"> Média Potência CC</th>
+            <th scope="col"> Média Energia CA</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for value in res %}
+        <tr>
+            <!-- <th scope="row">{{value.usina_id}}</th> -->
+            <th scope="row">{{value.name}}</th>
+            <!-- <td>{{value.power_ca}}</td>
+            <td>{{value.power_cc}}</td>
+            <td>{{value.energy_ca}}</td> -->
+            <td>{{value.avg_power_ca}}</td>
+            <td>{{value.avg_power_cc}}</td>
+            <td>{{value.avg_energy_ca}}</td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+<!-- <table class="table">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            {%for value in res %}
+            <th scope="col" colspan="3">{{value.name}}</th>
+            {%endfor%}
+        </tr>
+    </thead>
+    <tbody>
+
+
+        <tr>
+            {%for value in res %}
+            <th scope="col"></th>
+            <th scope="col"> Média Potência CA</th>
+            <th scope="col"> Média Potência CC</th>
+            <th scope="col"> Média Energia CA</th>
+            {%endfor%}
+        </tr>
+        {%for value in res %}
+
+        <tr>
+            <th scope="row">{{value.name}}</th>
+            <!-- <td>{{value.power_ca}}</td>
+            <td>{{value.power_cc}}</td>
+            <td>{{value.energy_ca}}</td> -->
+<!-- <td>{{value.avg_power_ca}}</td>
+<td>{{value.avg_power_cc}}</td>
+<td>{{value.avg_energy_ca}}</td>
+
+</tr>
+{% endfor %}
+</tbody>
+</table> -->
+{%endif%}
